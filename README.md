@@ -61,7 +61,13 @@ git commit -m "Incluindo teste inválido"
 git push origin invalid-test
 ```
 
-Logo após enviar as alterações, você deve abrir o GitHub e submenter um Pull Request através do botão que irá aparecer na barra superior.
+Após executar os comandos descritos anteriormente, você deve abrir o link exibido no terminal para criar um Pull Request do branch `invalid-test` para o branch `main`
 
-Após o envio do Pull Request, o fluxo de trabalho criado anteriormente será inciado, na qual você pode acompanhar o processo através da aba Actions.
+![image](https://user-images.githubusercontent.com/7620947/109094738-3ef35200-76f9-11eb-9270-0fd5dec553eb.png)
+
+
+Ao finalizar, o fluxo de trabalho criado anteriormente será inciado. Você pode acompanhar o processo através da aba Actions.
 Se tudo ocorrer como planejado, o seu pull request indicará a falha, impedindo a integraço do código, como mostrado abaixo.
+
+![image](https://user-images.githubusercontent.com/7620947/109094542-e623b980-76f8-11eb-89f9-a93c2aaf2eff.png)
+
