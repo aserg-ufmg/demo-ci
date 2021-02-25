@@ -42,7 +42,7 @@ Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tar
 
 ![image](https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png)
 
-Para finalizar, nós iremos criar um pull request com um teste inválido, para verificar se o nosso código será barrado durante o process. Desta forma, você deve incluir um novo caso de teste no arquivo [src/test/java/br/ufmg/dcc/StackTest.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/test/java/br/ufmg/dcc/StackTest.java). Repare que o teste é inválido, pois a stack recebeu um item e estamos esperando que ela esteja vazia, logo o teste deve falhar.
+Para finalizar, você deve criar um pull request incluindo um teste inválido, para verificar se o código será barrado durante o processo. Especificamente, você deve incluir o código abaixo no arquivo [src/test/java/br/ufmg/dcc/StackTest.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/test/java/br/ufmg/dcc/StackTest.java), ao final da classe StackTest. Repare que o teste é inválido, pois a stack recebeu um item e estamos esperando que ela esteja vazia, logo o teste deve falhar.
 
 ```java
   @Test
