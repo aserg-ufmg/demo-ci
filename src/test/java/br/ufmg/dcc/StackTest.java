@@ -49,4 +49,10 @@ public class StackTest {
     int result = stack.pop();
     result = stack.pop();
   }
+
+  @Test
+  public void testInvalid() {
+    stack.push(10);
+    assertTrue(stack.isEmpty());
+  }
 }
