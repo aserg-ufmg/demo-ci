@@ -49,5 +49,4 @@ public class StackTest {
     int result = stack.pop();
     result = stack.pop();
   }
-
 }
