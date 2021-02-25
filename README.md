@@ -37,3 +37,31 @@ jobs:
       - name: Build
         run: mvn package -Dmaven.test.skip=true # Compila o código fonte
 ```
+
+Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefass e você pode acompanhar todo o processo através da aba Actions do seu repositório
+
+![image](https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png)
+
+Para finalizar, nós iremos criar um pull request com um teste inválido, para verificar se o nosso código será barrado durante o process. Desta forma, você deve incluir um novo caso de teste no arquivo [src/test/java/br/ufmg/dcc/StackTest.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/test/java/br/ufmg/dcc/StackTest.java). Repare que o teste é inválido, pois a stack recebeu um item e estamos esperando que ela esteja vazia, logo o teste deve falhar.
+
+```java
+  @Test
+  public void testInvalid() {
+    stack.push(10);
+    assertTrue(stack.isEmpty());
+  }
+```
+
+Após adicionr o código, você deve criar uma nova branch, comitar as mudanças e dar um push para seu repositório.
+
+```bash
+git checkout -b invalid-test
+git add --all
+git commit -m "Incluindo teste inválido"
+git push origin invalid-test
+```
+
+Logo após enviar as alterações, você deve abrir o GitHub e submenter um Pull Request através do botão que irá aparecer na barra superior.
+
+Após o envio do Pull Request, o fluxo de trabalho criado anteriormente será inciado, na qual você pode acompanhar o processo através da aba Actions.
+Se tudo ocorrer como planejado, o seu pull request indicará a falha, impedindo a integraço do código, como mostrado abaixo.
