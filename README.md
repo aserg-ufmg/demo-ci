@@ -19,12 +19,12 @@ name: Github CI
 on: [push, pull_request] # Eventos que irão iniciar a tarefa
 
 jobs:
-  build:
+  pipeline:
     runs-on: ubuntu-latest # Os comandos serão executados em um sistema operacional Linux
 
     steps:
       - name: Git Checkout
-      - uses: actions/checkout@v2 # Faz o checkout do código recebido
+        uses: actions/checkout@v2 # Faz o checkout do código recebido
 
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1 # Configura o Java 1.8
