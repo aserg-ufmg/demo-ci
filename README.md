@@ -48,7 +48,7 @@ Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tar
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
 </p>
 
-Para finalizar, nós iremos criar um pull request com um pequeno bug, para verificar se o nosso código será barrado durante o process. Desta forma, você deve alterar a função `soma` no arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Você deve alterar a linha 6, alterando o cálculo para `x + y + 1`, como apresentado abaixo. Logo, os testes devem falhar após a alteração do código.
+Para finalizar, nós iremos criar um pull request com um pequeno bug, para verificar se o nosso código será barrado durante o processo de integração. Desta forma, você deve alterar a função `soma` no arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Você deve alterar a linha 6, alterando o cálculo de soma para `x + y + 1`, como apresentado abaixo. Logo, os testes devem falhar após a alteração do código.
 
 ```diff
 --- a/src/main/java/br/ufmg/dcc/Calculadora.java
