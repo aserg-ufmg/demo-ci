@@ -13,7 +13,7 @@ O Github Actions permite a criação de fluxos de trabalho que podem ser dispara
 Neste roteiro, você irá aprender a configurar um simples fluxo de integração contínua para uma aplicaçãoo desenvolvida em Java. A partir de um Pull Request ou Push, o GitHub Actions vai executar os testes de unidade e compilar a nossa aplicação
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109091107-f2a51380-76f2-11eb-9004-ecfbdc2d0e64.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109251864-fefc9f80-77ca-11eb-862f-3e016a6414af.png" />
 </p>
 
 Para isso, nós precisamos criar o arquivo `.github/workflows/actions.yaml`, ele será responsável por definir as instruções do nosso fluxo de tarefas. O conteúdo do arquivo será definido da seguinte forma:
