@@ -1,5 +1,5 @@
 name: Github CI
-on: [push, pull_request] # Eventos que irão iniciar a tarefa
+on: [pull_request] # Eventos que irão iniciar a tarefa
 
 jobs:
   pipeline:
