@@ -1,4 +1,4 @@
-# Demo-CI: Uma Demonstração Prática do Uso de um Servidor de Integração Contínua
+# Demo-CI: Demonstração Prática do Uso de Servidores de Integração Contínua
 
 Este repositório apresenta uma demonstração prática da configuração e uso de um **Servidor de Integração Contínua**. Se você ainda não sabe o que é **Integração Contínua** e qual o papel desempenhado por servidores de CI, recomendamos ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
 
