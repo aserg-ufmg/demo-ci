@@ -15,9 +15,43 @@ O Github Actions permite executar alguns programas externos assim que determinad
     <img width="100%" src="https://user-images.githubusercontent.com/7620947/109080916-232f8200-76e0-11eb-8d02-9ca9f518cea2.png" />
 </p>
 
- Git Push, abertura de issues, entre outras coisas. Desta forma o usuário pode definir tarefas e automatizar execução de teste de unidade, linters e distribuição da aplicação após integrada.
+## Programa usado na Demonstração
 
-Neste roteiro, você irá aprender a configurar um simples fluxo de integração contínua para uma aplicaçãoo desenvolvida em Java. A partir de um Pull Request ou Push, o GitHub Actions vai executar os testes de unidade e compilar a nossa aplicação
+Para realizar esta demonstraço, vamos usar um programa Java muito simples, que já foi criado neste repositório:
+
+```java
+public class Calculadora {
+
+  public int soma(int x, int y) {
+    return x + y;
+  }
+
+  public int subtrai(int x, int y) {
+    return x - y;
+  }
+}
+```
+
+Toda vez que chegar um PR no repositório, o servidor de CI vai automaticamete compilar todo o código deste programa (isto é, realizar um build) e rodar o seguinte teste de unidade:
+
+```java
+public class CalculadoraTest {
+  @Test
+  public void testeSoma1() {
+    Calculadora calc = new Calculadora();
+    int resultadoEsperado = 5;
+    int resultadoRetornado = calc.soma(2,3);
+    assertEquals(resultadoEsperado, resultadoRetornado);
+  }
+
+  @Test
+  public void testeSoma2() {
+    Calculadora calc = new Calculadora();
+    assertEquals(10, calc.soma(4,6));
+  }
+}
+```
+
 
 
 Para isso, nós precisamos criar o arquivo `.github/workflows/actions.yaml`, ele será responsável por definir as instruções do nosso fluxo de tarefas. O conteúdo do arquivo será definido da seguinte forma:
