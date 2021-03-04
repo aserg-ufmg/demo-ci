@@ -4,20 +4,19 @@ Este repositório apresenta uma demonstração prática da configuração e uso 
 
 Apesar de existirem diversos servidores de integração contínua, nesta demonstração iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI. 
 
-O Github Actions permite executar alguns programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para rodar compilar todo o código do projeto e rodar seus testes de unidade sempre que um novo Pull Request (PR) for aberto no projeto, conforme ilustrado a seguir.
-
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109251864-fefc9f80-77ca-11eb-862f-3e016a6414af.png" />
 </p>
 
+O Github Actions permite executar programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para compilar todo o código (*build*) do projeto e rodar seus testes de unidade quando um Pull Request (PR) for aberto no projeto, conforme ilustrado a seguir.
 
 <p align="center">
     <img width="100%" src="https://user-images.githubusercontent.com/7620947/109080916-232f8200-76e0-11eb-8d02-9ca9f518cea2.png" />
 </p>
 
-## Programa usado na Demonstração
+## Programa de Exemplo
 
-Para realizar esta demonstraço, vamos usar um programa Java muito simples, que já foi criado neste repositório:
+Para realizar a demonstração, vamos usar um programa Java muito simples, que já foi criado e está disponível neste repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
 
 ```java
 public class Calculadora {
@@ -32,7 +31,7 @@ public class Calculadora {
 }
 ```
 
-Toda vez que chegar um PR no repositório, o servidor de CI vai automaticamete compilar todo o código deste programa (isto é, realizar um build) e rodar o seguinte teste de unidade:
+Quando chegar um PR no repositório, o servidor de CI vai realizar um *build* desse programa e rodar o seguinte teste de unidade (também já disponível no repositório, veja em [CalculadoraTest](https://github.com/aserg-ufmg/demo-ci/blob/main/src/test/java/br/ufmg/dcc/CalculadoraTest.java)):
 
 ```java
 public class CalculadoraTest {
@@ -52,9 +51,16 @@ public class CalculadoraTest {
 }
 ```
 
+## Configurando o GitHub Actions
 
+Antes de mais nada realize um fork deste repositório. Para isso, basta clicar no botão **Fork** no canto superior direito desta página.
 
-Para isso, nós precisamos criar o arquivo `.github/workflows/actions.yaml`, ele será responsável por definir as instruções do nosso fluxo de tarefas. O conteúdo do arquivo será definido da seguinte forma:
+Ou seja, você irá configurar um servidor de CI nesta sua cópia do repo.
+
+Em seguida, copie o código a seguir para um arquivo que deve ter o seguinte nome: `.github/workflows/actions.yaml`.
+
+Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `actions.yaml`.
+
 
 ```yaml
 name: Github CI
@@ -79,6 +85,8 @@ jobs:
       - name: Build
         run: mvn package -Dmaven.test.skip=true # Compila o código fonte
 ```
+
+Basicamente, o arquivo acima ativa e configura o GitHub Actions. Isto é, ele configura o GitHub actions para toda vez que ocorrer um evento `pull_request` realizar três tarefas: (1) realizar o checkout do código; (2) rodar os testes de unidade; (3) realizar um build.
 
 Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefass e você pode acompanhar todo o processo através da aba Actions do seu repositório
 
