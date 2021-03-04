@@ -97,10 +97,10 @@ Esse ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `
 Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefas e você pode acompanhar todo o processo através da aba Actions do seu repositório
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
+    <img width="50%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
 </p>
 
-## Tarefa #2: O que acontece se eu submeter um PR com bug?
+## Tarefa #2: Criando um PR com bug?
 
 
 Para finalizar, você deve criar um PR com um pequeno bug, para verificar se o nosso código será barrado durante o processo de integração. Desta forma, você deve alterar a função `soma` no arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Você deve alterar a linha 6, alterando o cálculo de soma para `x + y + 1`, como apresentado abaixo. Logo, os testes devem falhar após a alteração do código.
