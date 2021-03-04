@@ -1,10 +1,14 @@
 # Demo-CI: Uma Demonstração Prática do Uso de um Servidor de Integração Contínua
 
-Este repositório apresenta uma demonstração prática da configuração e uso de um **Servidor de Integração Contínua**. Se você ainda não sabe o que é **Integração Contínua** e qual o papel desempenhado por servidores de CI, recomendamos antes ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
+Este repositório apresenta uma demonstração prática da configuração e uso de um **Servidor de Integração Contínua**. Se você ainda não sabe o que é **Integração Contínua** e qual o papel desempenhado por servidores de CI, recomendamos ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
 
 Apesar de existirem diversos servidores de integração contínua, nesta demonstração iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI. 
 
-O Github Actions permite executar alguns programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para rodar compilar todo o código do projeto e rodar seus testes de unidade sempre que um novo Pull Request (PR) for aberto no projeto,
+O Github Actions permite executar alguns programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para rodar compilar todo o código do projeto e rodar seus testes de unidade sempre que um novo Pull Request (PR) for aberto no projeto, conforme ilustrado a seguir.
+
+<p align="center">
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109251864-fefc9f80-77ca-11eb-862f-3e016a6414af.png" />
+</p>
 
 
 <p align="center">
@@ -15,9 +19,6 @@ O Github Actions permite executar alguns programas externos assim que determinad
 
 Neste roteiro, você irá aprender a configurar um simples fluxo de integração contínua para uma aplicaçãoo desenvolvida em Java. A partir de um Pull Request ou Push, o GitHub Actions vai executar os testes de unidade e compilar a nossa aplicação
 
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109251864-fefc9f80-77ca-11eb-862f-3e016a6414af.png" />
-</p>
 
 Para isso, nós precisamos criar o arquivo `.github/workflows/actions.yaml`, ele será responsável por definir as instruções do nosso fluxo de tarefas. O conteúdo do arquivo será definido da seguinte forma:
 
