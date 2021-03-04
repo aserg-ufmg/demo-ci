@@ -14,6 +14,8 @@ O Github Actions permite executar programas externos assim que determinados even
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109251864-fefc9f80-77ca-11eb-862f-3e016a6414af.png" />
 </p>
 
+**@Rodrigo: não seria primeiro buil e depois testes?**
+
 ## Programa de Exemplo
 
 Para realizar a demonstração, vamos usar um programa Java muito simples, que já foi criado e está disponível neste repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
@@ -86,6 +88,8 @@ jobs:
         run: mvn package -Dmaven.test.skip=true # Compila o código fonte
 ```
 
+**@Rodrigo: mesma pergunta anterior: não seria primeiro buil e depois testes? Isto é, a ordem dos steps é  importante?**
+
 Esse ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `pull_request` -- realizar três tarefas: (1) realizar o checkout do código; (2) rodar os testes de unidade; (3) realizar um build.
 
 Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefass e você pode acompanhar todo o processo através da aba Actions do seu repositório
@@ -94,7 +98,10 @@ Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tar
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
 </p>
 
-Para finalizar, nós iremos criar um pull request com um pequeno bug, para verificar se o nosso código será barrado durante o processo de integração. Desta forma, você deve alterar a função `soma` no arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Você deve alterar a linha 6, alterando o cálculo de soma para `x + y + 1`, como apresentado abaixo. Logo, os testes devem falhar após a alteração do código.
+## Tarefa #1: Simular uma Integração com Bugs
+
+
+Para finalizar, você deve criar um PR com um pequeno bug, para verificar se o nosso código será barrado durante o processo de integração. Desta forma, você deve alterar a função `soma` no arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Você deve alterar a linha 6, alterando o cálculo de soma para `x + y + 1`, como apresentado abaixo. Logo, os testes devem falhar após a alteração do código.
 
 ```diff
 --- a/src/main/java/br/ufmg/dcc/Calculadora.java
