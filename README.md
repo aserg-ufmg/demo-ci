@@ -62,7 +62,7 @@ Ou seja, você irá configurar um servidor de CI nesta sua cópia do repo.
 Em seguida, copie o código a seguir para um arquivo que deve ter o seguinte nome: `.github/workflows/actions.yaml`.
 
 Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `actions.yaml`.
-
+**@Rodrigo: favor conferir se tá certo a explicação acima**?
 
 ```yaml
 name: Github CI
@@ -92,7 +92,9 @@ jobs:
 
 Esse ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `pull_request` -- realizar três tarefas: (1) realizar o checkout do código; (2) rodar os testes de unidade; (3) realizar um build.
 
-Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefass e você pode acompanhar todo o processo através da aba Actions do seu repositório
+**@Rodrigo: fiquei na dúvida, precisa de abrir um PR? Como o GitHub Actions vai rodar? Automaticamente? Precisa dar um push no arquivo yaml?**
+
+Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefas e você pode acompanhar todo o processo através da aba Actions do seu repositório
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
