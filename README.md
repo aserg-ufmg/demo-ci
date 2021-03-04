@@ -1,6 +1,8 @@
 # Demo-CI: Demonstração Prática do Uso de Servidores de Integração Contínua
 
-Este repositório apresenta uma demonstração prática da configuração e uso de um **Servidor de Integração Contínua**. Se você ainda não sabe o que é **Integração Contínua** e qual o papel desempenhado por servidores de CI, recomendamos ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
+Este repositório descreve um roteiro prático para configuração e uso de um **Servidor de Integração Contínua**. O objetivo é proporcionar ao aluno um primeiro contato prático com integração contínua.
+
+Se você ainda não sabe o que é **Integração Contínua** e qual o papel desempenhado por servidores de CI, recomendamos ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
 
 Apesar de existirem diversos servidores de integração contínua, nesta demonstração iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI. 
 
