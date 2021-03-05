@@ -165,7 +165,7 @@ Em seguida, crie um PR com sua modificação. Para isso, basta abrir a URL indic
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060105-2364f880-7d44-11eb-9dff-1bde0c553d9d.png" />
 </p>
 
-Após abrir essa URL no seu browserr, selecione o branch de origem (`bug`) e destino (`main`) do seu PR. 
+Após abrir essa URL no seu browser, selecione o branch de origem (`bug`) e destino (`main`) do seu PR. 
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060765-2dd3c200-7d45-11eb-9a19-1a53d5dd24c6.png" />
@@ -178,7 +178,7 @@ Após aprovar o merge do PR, terá início o **pipeline de CI**, ou seja: o pró
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110062278-bc494300-7d47-11eb-9d80-c5642942d346.png" />
 </p>
 
-**RESUMINDO**: O Servidor de CI conseguiu alertar, de forma automática, tanto o autor do PR como o integrador de que existe um problema no código submetido, o que impede que ele seja integrado no branchh principal do repositório.
+**RESUMINDO**: O Servidor de CI conseguiu alertar, de forma automática, tanto o autor do PR como o integrador de que existe um problema no código submetido, o que impede que ele seja integrado no branch principal do repositório.
 
 
 ## Créditos
