@@ -171,7 +171,7 @@ Após abrir essa URL no seu browserr, selecione o branch de origem (`bug`) e des
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060765-2dd3c200-7d45-11eb-9a19-1a53d5dd24c6.png" />
 </p>
 
-Após aprovar o PR, terá início o **pipeline de CI**, ou seja: o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
+Após aprovar o merge do PR, terá início o **pipeline de CI**, ou seja: o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
 
 
 <p align="center">
