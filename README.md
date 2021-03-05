@@ -106,7 +106,7 @@ git push origin main
 Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefas e você pode acompanhar todo o processo através da aba Actions do seu repositório.
 
 <p align="center">
-    <img width="50%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
+    <img width="50%" src="https://user-images.githubusercontent.com/7620947/110059807-b8b3bd00-7d43-11eb-9e57-e6ba1fa3457a.png" />
 </p>
 
 ## Tarefa #2: Criando um PR com bug?
@@ -137,15 +137,21 @@ git commit -m "Incluindo alterações na função soma"
 git push origin bug
 ```
 
-Após executar os comandos descritos anteriormente, você deve abrir o link exibido no terminal para criar um Pull Request do branch `bug` para o branch `main`
+Após executar os comandos descritos anteriormente, você deve abrir o link apresentado no terminal para criar um Pull Request do branch `bug` para o branch `main`
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109094738-3ef35200-76f9-11eb-9270-0fd5dec553eb.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060105-2364f880-7d44-11eb-9dff-1bde0c553d9d.png" />
 </p>
 
-Ao finalizar, o fluxo de trabalho criado anteriormente será inciado. Você pode acompanhar o processo através da aba Actions.
+Após clicar no link, você deve selecionar o branch de origem e destino do pull request. Desta forma, você deve selecionar como origem o branch `bug` e destino o branch `main`, assim como apresentado abaixo. É importante ressaltar que o Pull Request está sendo criado no seu repositório:
+
+<p align="center">
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060765-2dd3c200-7d45-11eb-9a19-1a53d5dd24c6.png" />
+</p>
+
+Após confirmar o Pull Request, o fluxo de trabalho iniciará e você poderá acompanhar o processo através da aba Actions.
 Se tudo ocorrer como planejado, o seu pull request indicará a falha, impedindo a integraço do código, como mostrado abaixo.
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109094542-e623b980-76f8-11eb-89f9-a93c2aaf2eff.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110062278-bc494300-7d47-11eb-9d80-c5642942d346.png" />
 </p>
