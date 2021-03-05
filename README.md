@@ -61,14 +61,19 @@ Antes de mais nada realize um fork deste repositório. Para isso, basta clicar n
 
 Ou seja, você irá configurar um servidor de CI nesta sua cópia do repo.
 
-Em seguida, copie o código a seguir para um arquivo que deve ter o seguinte nome: `.github/workflows/actions.yaml`.
+A etapa seguinte pode ser aplicada através do editor de arquivos do próprio GitHub. Porém, caso você tenha interesse em criar o arquivo localmente em sua máquina, basta cloná-lo através do comando, onde `<USER>` deve ser substituído pelo seu usuário no GitHub, isto é, o usuário na qual o fork foi realizado:
+
+```bash
+git clone https://github.com/<USER>/demo-ci.git
+```
+
+Em seguida, copie o código a seguir para um arquivo na raiz do projeto que deve ter o seguinte nome: `.github/workflows/actions.yaml`.
 
 Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `actions.yaml`.
-**@Rodrigo: favor conferir se tá certo a explicação acima**?
 
 ```yaml
 name: Github CI
-on: [pull_request] # Evento que irá iniciar a tarefa
+on: [push,pull_request] # Evento que irá iniciar a tarefa
 
 jobs:
   pipeline:
@@ -83,20 +88,24 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Unit Test
-        run: mvn test # Executada os testes de unidade
-
       - name: Build
         run: mvn package -Dmaven.test.skip=true # Compila o código fonte
+
+      - name: Unit Test
+        run: mvn test # Executada os testes de unidade
 ```
 
-**@Rodrigo: mesma pergunta anterior: não seria primeiro buil e depois testes? Isto é, a ordem dos steps é  importante?**
+Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas: (1) realizar o checkout do código; (2) realizar um build; (3) rodar os testes de unidade.
 
-Esse ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `pull_request` -- realizar três tarefas: (1) realizar o checkout do código; (2) rodar os testes de unidade; (3) realizar um build.
+Lembre-se, após criar o arquivo, você deverá criar um `commit` com as mudanças realizadas e enviá-las para o seu repositório atrávés do `git push`:
 
-**@Rodrigo: fiquei na dúvida, precisa de abrir um PR? Como o GitHub Actions vai rodar? Automaticamente? Precisa dar um push no arquivo yaml?**
+```bash
+git add --all
+git commit -m "Configurando GitHub Actions"
+git push origin main
+```
 
-Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefas e você pode acompanhar todo o processo através da aba Actions do seu repositório
+Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefas e você pode acompanhar todo o processo através da aba Actions do seu repositório.
 
 <p align="center">
     <img width="50%" src="https://user-images.githubusercontent.com/7620947/109092561-8677df00-76f5-11eb-9db1-b2409505b721.png" />
