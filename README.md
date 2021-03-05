@@ -2,9 +2,9 @@
 
 Este repositório descreve um roteiro prático para configuração e uso de um **Servidor de Integração Contínua**. O objetivo é proporcionar ao aluno um primeiro contato prático com integração contínua.
 
-Se você ainda não sabe o que é **Integração Contínua** e qual o papel desempenhado por servidores de CI, recomendamos ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
+Se você ainda não sabe o que é **Integração Contínua** e também não entende o papel desempenhado por servidores de CI, recomendamos ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
 
-Apesar de existirem diversos servidores de integração contínua, nesta demonstração iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI. 
+Apesar de existirem diversos servidores de integração contínua, neste roteiro iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI. 
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109080916-232f8200-76e0-11eb-8d02-9ca9f518cea2.png" />
@@ -18,7 +18,7 @@ O Github Actions permite executar programas externos assim que determinados even
 
 ## Programa de Exemplo
 
-Para realizar a demonstração, vamos usar um programa Java muito simples, que já foi criado e está disponível neste repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
+Para ilustrar o uso do servidor de CI, vamos usar um programa Java muito simples, que já foi criado e está disponível neste repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
 
 ```java
 public class Calculadora {
@@ -55,19 +55,21 @@ public class CalculadoraTest {
 
 ## Tarefa #1: Configuranr o GitHub Actions
 
+### Passo 1
+
 Antes de mais nada realize um fork deste repositório. Para isso, basta clicar no botão **Fork** no canto superior direito desta página.
 
 Ou seja, você irá configurar um servidor de CI nesta sua cópia do repo.
 
-A etapa seguinte pode ser aplicada através do editor de arquivos do próprio GitHub. Porém, caso você tenha interesse em criar o arquivo localmente em sua máquina, basta cloná-lo através do comando, onde `<USER>` deve ser substituído pelo seu usuário no GitHub, isto é, o usuário na qual o fork foi realizado:
+### Passo 2
+
+Clone o repositório para sua máquina local, usando o seguinte comando( onde `<USER>` deve ser substituído pelo seu usuário no GitHub):
 
 ```bash
 git clone https://github.com/<USER>/demo-ci.git
 ```
 
-Em seguida, copie o código a seguir para um arquivo na raiz do projeto que deve ter o seguinte nome: `.github/workflows/actions.yaml`.
-
-Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `actions.yaml`.
+Em seguida, copie o código a seguir para um arquivo com o seguinte nome: `.github/workflows/actions.yaml`. Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `actions.yaml`.
 
 ```yaml
 name: Github CI
@@ -95,7 +97,9 @@ jobs:
 
 Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas: (1) realizar o checkout do código; (2) realizar um build; (3) rodar os testes de unidade.
 
-Lembre-se, após criar o arquivo, você deverá criar um `commit` com as mudanças realizadas e enviá-las para o seu repositório atrávés do `git push`:
+### Passo 3
+
+Realize um `commit` e um `git push`, isto é:
 
 ```bash
 git add --all
@@ -103,10 +107,12 @@ git commit -m "Configurando GitHub Actions"
 git push origin main
 ```
 
-Após criar o arquivo, o GitHub Actions iniciará automaticamente o fluxo de tarefas e você pode acompanhar todo o processo através da aba Actions do seu repositório.
+### Passo 4
+
+Quando o `push` chegar no repositório principal, o GitHub Actions iniciará automaticamente o fluxo de tarefas configurado no arquivo `actions.yaml` (isto é, build + testes). Você pode acompanhar o status dessa execução clicando na aba Actions do seu repositório.
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110059807-b8b3bd00-7d43-11eb-9e57-e6ba1fa3457a.png" />
+    <img width="80%" src="https://user-images.githubusercontent.com/7620947/110059807-b8b3bd00-7d43-11eb-9e57-e6ba1fa3457a.png" />
 </p>
 
 ## Tarefa #2: Criando um PR com bug?
