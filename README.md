@@ -16,8 +16,6 @@ O Github Actions permite executar programas externos assim que determinados even
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110053018-50f77500-7d37-11eb-9ca1-3de609b93584.png" />
 </p>
 
-**@Rodrigo: não seria primeiro buil e depois testes?**
-
 ## Programa de Exemplo
 
 Para realizar a demonstração, vamos usar um programa Java muito simples, que já foi criado e está disponível neste repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
