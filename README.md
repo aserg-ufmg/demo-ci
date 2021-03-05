@@ -1,6 +1,6 @@
 # Demo-CI: Demonstração Prática do Uso de Servidores de Integração Contínua
 
-Este repositório descreve um roteiro prático para configuração e uso de um **Servidor de Integração Contínua**. O objetivo é proporcionar ao aluno um primeiro contato prático com integração contínua.
+Este repositório descreve um roteiro prático para configuração e uso de um **Servidor de Integração Contínua**. O objetivo é proporcionar ao aluno um primeiro contato real com essa prática de desenvolvimento de software.
 
 Se você ainda não sabe o que é **Integração Contínua** e também não entende o papel desempenhado por servidores de CI, recomendamos antes ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
 
@@ -18,7 +18,7 @@ O Github Actions permite executar programas externos assim que determinados even
 
 ## Programa de Exemplo
 
-Para ilustrar o uso do servidor de CI, vamos usar um programa Java muito simples, que já foi criado e está disponível neste repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
+Para ilustrar o uso do servidor de CI, vamos usar um programa Java muito simples, que já foi criado e está disponível neste mesmo repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
 
 ```java
 public class Calculadora {
@@ -33,7 +33,7 @@ public class Calculadora {
 }
 ```
 
-Quando chegar um PR no repositório, o servidor de CI vai realizar um *build* desse programa e rodar o seguinte teste de unidade (também já disponível no repositório, veja em [CalculadoraTest](https://github.com/aserg-ufmg/demo-ci/blob/main/src/test/java/br/ufmg/dcc/CalculadoraTest.java)):
+Quando chegar um PR no repositório, o servidor de CI vai automaticamente realizar um *build* desse programa e rodar o seguinte teste de unidade (também já disponível no repositório, veja em [CalculadoraTest.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/test/java/br/ufmg/dcc/CalculadoraTest.java)):
 
 ```java
 public class CalculadoraTest {
@@ -60,11 +60,11 @@ public class CalculadoraTest {
 
 Antes de mais nada realize um fork deste repositório. Para isso, basta clicar no botão **Fork** no canto superior direito desta página.
 
-Ou seja, você irá configurar um servidor de CI nesta sua cópia do repo.
+Ou seja, você irá configurar um servidor de CI na sua própria cópia do repositório.
 
 #### Passo 2
 
-Clone o repositório para sua máquina local, usando o seguinte comando( onde `<USER>` deve ser substituído pelo seu usuário no GitHub):
+Clone o repositório para sua máquina local, usando o seguinte comando (onde `<USER>` deve ser substituído pelo seu usuário no GitHub):
 
 ```bash
 git clone https://github.com/<USER>/demo-ci.git
@@ -96,7 +96,11 @@ jobs:
         run: mvn test # Executada os testes de unidade
 ```
 
-Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas: (1) realizar o checkout do código; (2) realizar um build; (3) rodar os testes de unidade.
+Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas: 
+
+* realizar o checkout do código; 
+* realizar um build; 
+* rodar os testes de unidade.
 
 #### Passo 3
 
