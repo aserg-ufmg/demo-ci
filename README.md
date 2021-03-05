@@ -114,7 +114,9 @@ git push origin main
 
 #### Passo 4
 
-Quando o `push` chegar no repositório principal, o GitHub Actions iniciará automaticamente o fluxo de tarefas configurado no arquivo `actions.yaml` (isto é, build + testes). Você pode acompanhar o status dessa execução clicando na aba Actions do seu repositório.
+Quando o `push` chegar no repositório principal, o GitHub Actions iniciará automaticamente o fluxo de tarefas configurado no arquivo `actions.yaml` (isto é, build + testes).
+
+Você pode acompanhar o status dessa execução clicando na aba Actions do seu repositório.
 
 <p align="center">
     <img width="80%" src="https://user-images.githubusercontent.com/7620947/110059807-b8b3bd00-7d43-11eb-9e57-e6ba1fa3457a.png" />
@@ -122,13 +124,13 @@ Quando o `push` chegar no repositório principal, o GitHub Actions iniciará aut
 
 
 
-## Tarefa #2: Criando um PR com bug?
+## Tarefa #2: Criando um PR com bug
 
-Para finalizar, vamos introduzir um pequeno bug no programa de exemplo e enviar um PR, para verificar se ele será "barrado" durante o processo de integração (isto, se o nosso teste vai "detectar" o bug e falhar). 
+Para finalizar, vamos introduzir um pequeno bug no programa de exemplo e enviar um PR, para mostrar que ele será "barrado" pelo processo de integração (isto, o nosso teste vai "detectar" o bug e falhar). 
 
 #### Passo 1
 
-Introduza um pequeno bug na função `soma` do arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Por exemplo, basta alterar a linha 6, alterando o cálculo de soma para `x + y + 1`, como apresentado abaixo. 
+Introduza um pequeno bug na função `soma` do arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Por exemplo, basta alterar a linha 6, alterando o retorno da função para `x + y + 1`, como apresentado abaixo. 
 
 ```diff
 --- a/src/main/java/br/ufmg/dcc/Calculadora.java
@@ -163,7 +165,7 @@ Em seguida, crie um PR com sua modificação. Para isso, basta abrir a URL indic
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060105-2364f880-7d44-11eb-9dff-1bde0c553d9d.png" />
 </p>
 
-Após clicar no link, selecione o branch de origem (`bug`) e destino (`main`) do seu PR. 
+Após abrir essa URL no seu browserr, selecione o branch de origem (`bug`) e destino (`main`) do seu PR. 
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060765-2dd3c200-7d45-11eb-9a19-1a53d5dd24c6.png" />
@@ -176,7 +178,7 @@ Após aprovar o PR, terá início o **pipeline de CI**, ou seja: o próprio GitH
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110062278-bc494300-7d47-11eb-9d80-c5642942d346.png" />
 </p>
 
-**RESUMINDO**: O Servidor de CI conseguiu alertar, de forma automática, tanto o autor do PR como o integrador do código de que existe um problema no código submetido, o que impediu que ele fosse integrado no branchh principal do repositório.
+**RESUMINDO**: O Servidor de CI conseguiu alertar, de forma automática, tanto o autor do PR como o integrador de que existe um problema no código submetido, o que impede que ele seja integrado no branchh principal do repositório.
 
 
 ## Créditos
