@@ -1,4 +1,4 @@
-# Demo-CI: Demonstração Prática do Uso de Servidores de Integração Contínua
+# Demo-CI: Aula Prática sobre Servidores de Integração Contínua
 
 Este repositório descreve um roteiro prático para configuração e uso de um **Servidor de Integração Contínua**. O objetivo é proporcionar ao aluno um primeiro contato real com essa prática de desenvolvimento de software.
 
