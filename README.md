@@ -4,13 +4,13 @@ Este repositório descreve um roteiro prático para configuração e uso de um *
 
 Se você ainda não sabe o que é **Integração Contínua** e também não entende o papel desempenhado por servidores de CI, recomendamos antes ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
 
-Apesar de existirem diversos servidores de integração contínua, neste roteiro iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI. 
+Apesar de existirem diversos servidores de integração contínua, neste roteiro iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/109080916-232f8200-76e0-11eb-8d02-9ca9f518cea2.png" />
 </p>
 
-O Github Actions permite executar programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para compilar todo o código (*build*) do projeto e rodar seus testes de unidade quando um Pull Request (PR) for aberto no repositório, conforme ilustrado a seguir.
+O Github Actions permite executar programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para compilar todo o código (_build_) do projeto e rodar seus testes de unidade quando um Pull Request (PR) for aberto no repositório, conforme ilustrado a seguir.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/110053018-50f77500-7d37-11eb-9ca1-3de609b93584.png" />
@@ -33,7 +33,7 @@ public class Calculadora {
 }
 ```
 
-Quando chegar um PR no repositório, o servidor de CI vai automaticamente realizar um *build* desse programa e rodar o seguinte teste de unidade (também já disponível no repositório, veja em [CalculadoraTest.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/test/java/br/ufmg/dcc/CalculadoraTest.java)):
+Quando chegar um PR no repositório, o servidor de CI vai automaticamente realizar um _build_ desse programa e rodar o seguinte teste de unidade (também já disponível no repositório, veja em [CalculadoraTest.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/test/java/br/ufmg/dcc/CalculadoraTest.java)):
 
 ```java
 public class CalculadoraTest {
@@ -74,7 +74,15 @@ Em seguida, copie o código a seguir para um arquivo com o seguinte nome: `.gith
 
 ```yaml
 name: Github CI
-on: [push,pull_request] # Evento que irá iniciar a tarefa
+on:
+  # Iniciar pipeline de tarefas quando um push
+  # ou pull request for enviado na branch main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   pipeline:
@@ -96,11 +104,11 @@ jobs:
         run: mvn test # Executada os testes de unidade
 ```
 
-Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas: 
+Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas:
 
-* realizar o checkout do código; 
-* realizar um build; 
-* rodar os testes de unidade.
+- realizar o checkout do código;
+- realizar um build;
+- rodar os testes de unidade.
 
 #### Passo 3
 
@@ -122,15 +130,13 @@ Você pode acompanhar o status dessa execução clicando na aba Actions do seu r
     <img width="80%" src="https://user-images.githubusercontent.com/7620947/110059807-b8b3bd00-7d43-11eb-9e57-e6ba1fa3457a.png" />
 </p>
 
-
-
 ## Tarefa #2: Criando um PR com bug
 
-Para finalizar, vamos introduzir um pequeno bug no programa de exemplo e enviar um PR, para mostrar que ele será "barrado" pelo processo de integração (isto, o nosso teste vai "detectar" o bug e falhar). 
+Para finalizar, vamos introduzir um pequeno bug no programa de exemplo e enviar um PR, para mostrar que ele será "barrado" pelo processo de integração (isto, o nosso teste vai "detectar" o bug e falhar).
 
 #### Passo 1
 
-Introduza um pequeno bug na função `soma` do arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Por exemplo, basta alterar a linha 6, alterando o retorno da função para `x + y + 1`, como apresentado abaixo. 
+Introduza um pequeno bug na função `soma` do arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Por exemplo, basta alterar a linha 6, alterando o retorno da função para `x + y + 1`, como apresentado abaixo.
 
 ```diff
 --- a/src/main/java/br/ufmg/dcc/Calculadora.java
@@ -159,27 +165,19 @@ git push origin bug
 
 #### Passo 3
 
-Em seguida, crie um PR com sua modificação. Para isso, basta abrir a URL indicada no seu terminal (veja figura abaixo; na qual a URL para criação do PR é: `https://github.com/rodrigo-brito/demo-ci/pull/new/bug`):
+Em seguida, crie um Pull Request (PR) com sua modificação. Para isso, basta acessar a seguinte URL em seu navegador: `https://github.com/<USER>/demo-ci/compare/main...bug`, onde `<USER>` deve ser substituido pelo seu usuário no GitHub. Nesta janela você pode conferir as modificações feitas e incluir uma pequena descrição ao Pull Request criado.
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060105-2364f880-7d44-11eb-9dff-1bde0c553d9d.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/111704705-5b793a80-881e-11eb-8422-22d51bde6b19.png" />
 </p>
 
-Após abrir essa URL no seu browser, selecione o branch de origem (`bug`) e destino (`main`) do seu PR. 
+Após finalizar a criação do Pull Request, será iniciada nossa pipeline, ou seja: o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
 
 <p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110060765-2dd3c200-7d45-11eb-9a19-1a53d5dd24c6.png" />
-</p>
-
-Após aprovar o merge do PR, terá início o **pipeline de CI**, ou seja: o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
-
-
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110062278-bc494300-7d47-11eb-9d80-c5642942d346.png" />
+    <img width="70%" src="https://user-images.githubusercontent.com/7620947/111704932-a85d1100-881e-11eb-8d3b-31f34bafa986.png" />
 </p>
 
 **RESUMINDO**: O Servidor de CI conseguiu alertar, de forma automática, tanto o autor do PR como o integrador de que existe um problema no código submetido, o que impede que ele seja integrado no branch principal do repositório.
-
 
 ## Créditos
 
