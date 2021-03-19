@@ -165,13 +165,13 @@ git push origin bug
 
 #### Passo 3
 
-Em seguida, crie um Pull Request (PR) com sua modificação. Para isso, basta acessar a seguinte URL em seu navegador: `https://github.com/<USER>/demo-ci/compare/main...bug`, onde `<USER>` deve ser substituido pelo seu usuário no GitHub. Nesta janela você pode conferir as modificações feitas e incluir uma pequena descrição ao Pull Request criado.
+Em seguida, crie um Pull Request (PR) com sua modificação. Para isso, basta acessar a seguinte URL em seu navegador: `https://github.com/<USER>/demo-ci/compare/main...bug`, onde `<USER>` deve ser substituido pelo seu usuário no GitHub. Nessa janela, você pode conferir as modificações feitas e incluir uma pequena descrição no PR.
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/111704705-5b793a80-881e-11eb-8422-22d51bde6b19.png" />
 </p>
 
-Após finalizar a criação do Pull Request, será iniciada nossa pipeline, ou seja: o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
+Após finalizar a criação do Pull Request, será iniciada nossa pipeline, ou seja, o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
 
 <p align="center">
     <img width="70%" src="https://user-images.githubusercontent.com/7620947/111704932-a85d1100-881e-11eb-8d3b-31f34bafa986.png" />
