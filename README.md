@@ -75,8 +75,8 @@ Em seguida, copie o código a seguir para um arquivo com o seguinte nome: `.gith
 ```yaml
 name: Github CI
 on:
-  # Iniciar pipeline de tarefas quando um push
-  # ou pull request for enviado na branch main
+  # Configura servidor de CI para executar o pipeline de tarefas abaixo (jobs) quando 
+  # um push ou pull request for realizado tendo como alvo a branch main
   push:
     branches:
       - main
