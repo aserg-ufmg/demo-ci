@@ -104,7 +104,7 @@ jobs:
         run: mvn test # Executada os testes de unidade
 ```
 
-Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` -- realizar três tarefas:
+Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` tendo como alvo a branch principal do repositório -- realizar três tarefas (jobs):
 
 - realizar o checkout do código;
 - realizar um build;
