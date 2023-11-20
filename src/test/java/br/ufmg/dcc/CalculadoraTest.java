@@ -13,7 +13,7 @@ public class CalculadoraTest {
   }
 
   @Test
-  public void testeSoma() {
+  public void testeSoma3() {
     Calculadora calc = new Calculadora();
     assertEquals(10, calc.soma(4,6));
   }
