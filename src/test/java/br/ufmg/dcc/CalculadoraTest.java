@@ -7,7 +7,7 @@ public class CalculadoraTest {
   @Test
   public void testeSoma1() {
     Calculadora calc = new Calculadora();
-    int resultadoEsperado = 5;
+    int resultadoEsperado = 7;
     int resultadoRetornado = calc.soma(2,3);
     assertEquals(resultadoEsperado, resultadoRetornado);
   }
