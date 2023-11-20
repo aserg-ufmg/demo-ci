@@ -8,6 +8,6 @@ public class Calculadora {
 
   public int subtrai(int x, int y) {
     return x - y;
-  }
+  } 
 
 }
