@@ -1,82 +1,79 @@
-# Demo-CI: Aula Prática sobre Servidores de Integração Contínua
+# Demo-CI: Hands-on Lecture on Continuous Integration Server
 
-Este repositório descreve um roteiro prático para configuração e uso de um **Servidor de Integração Contínua**. O objetivo é proporcionar ao aluno um primeiro contato real com essa prática de desenvolvimento de software.
+This repository presents a practical guide to set up and use a **Continous Integration (CI) Server**. The main objective of this guide is to provide students with a simple real first contact with this topic in Software Engineering.
 
-Se você ainda não sabe o que é **Integração Contínua** e também não entende o papel desempenhado por servidores de CI, recomendamos antes ler o [Capítulo 10](https://engsoftmoderna.info/cap10.html) do nosso livro texto ([Engenharia de Software Moderna](https://engsoftmoderna.info/cap10.html)).
+For more details on **Continous Integration (CI)**, you may find several tutorials and content by searching the Web. The [Atlassian CI/CD](https://www.atlassian.com/continuous-delivery/continuous-integration) webpage has a good background content on this topic.
 
-Apesar de existirem diversos servidores de integração contínua, neste roteiro iremos usar um recurso nativo do GitHub, chamado **GitHub Actions**, para configurar um servidor de CI.
+Even though there are many different **CI** servers, in this guide, we will use the native **CI** available in GitHub. In **GitHub Actions**, we can configure a CI server.
 
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/109080916-232f8200-76e0-11eb-8d02-9ca9f518cea2.png" />
-</p>
+![GitHub Actions](./images/ci-github-actions.png)
 
-O Github Actions permite executar programas externos assim que determinados eventos forem detectados em um repositório GitHub. Como nosso intuito é configurar um servidor CI, iremos usar o GitHub Actions para compilar todo o código (_build_) do projeto e rodar seus testes de unidade quando um Pull Request (PR) for aberto no repositório, conforme ilustrado a seguir.
+GitHub Actions allows us to execute external applications when GitHub detects pre-defined events in a repository. Our goal is to set up a CI server to compile our source code and run the test cases when a Pull Request (PR) is open (as shown in the diagram below). 
 
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/110053018-50f77500-7d37-11eb-9ca1-3de609b93584.png" />
-</p>
+![CI Pull Request Diagram](./images/ci-pull-request-diagram.png)
 
-## Programa de Exemplo
+## Code Example
 
-Para ilustrar o uso do servidor de CI, vamos usar um programa Java muito simples, que já foi criado e está disponível neste mesmo repositório ([Calculadora.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java)):
+We are going to use a simple Java code as a basis for our CI server. The full source code is available at this repository in the "src" folder, called [SimpleCalculator.java](./src/main/java/br/ufmg/dcc/SimpleCalculator.java).
+
 
 ```java
-public class Calculadora {
+public class SimpleCalculator {
 
-  public int soma(int x, int y) {
+  public int addition(int x, int y) {
     return x + y;
   }
 
-  public int subtrai(int x, int y) {
+  public int subtraction(int x, int y) {
     return x - y;
   }
+  //... and other functions
 }
 ```
-
-Quando chegar um PR no repositório, o servidor de CI vai automaticamente realizar um _build_ desse programa e rodar o seguinte teste de unidade (também já disponível no repositório, veja em [CalculadoraTest.java](https://github.com/aserg-ufmg/demo-ci/blob/main/src/test/java/br/ufmg/dcc/CalculadoraTest.java)):
+When we create a PR to this repository, the CI server will automatically compile/build this program and run the unit test cases. We also create a simple (and incomplete) test case in this repository called [SimpleCalculatorTest.java](./src/test/java/br/ufmg/dcc/SimpleCalculatorTest.java).
 
 ```java
-public class CalculadoraTest {
+public class SimpleCalculatorTest {
+  private SimpleCalculator calc;
 
-  @Test
-  public void testeSoma1() {
-    Calculadora calc = new Calculadora();
-    int resultadoEsperado = 5;
-    int resultadoRetornado = calc.soma(2,3);
-    assertEquals(resultadoEsperado, resultadoRetornado);
+  @BeforeEach
+  public void init(){
+    calc = new SimpleCalculator();
   }
 
   @Test
-  public void testeSoma2() {
-    Calculadora calc = new Calculadora();
-    assertEquals(10, calc.soma(4,6));
+  public void testAddition1() {
+    int expected = 5;
+    int result = calc.addition(2,3);
+    assertEquals(expected, result);
   }
+  //...
 }
 ```
 
-## Tarefa #1: Configurar o GitHub Actions
+## Task #1: Setting Up GitHub Actions
 
-#### Passo 1
+#### Step 1
 
-Antes de mais nada realize um fork deste repositório. Para isso, basta clicar no botão **Fork** no canto superior direito desta página.
+The very first thing to do is to fork this repository. Click on the **Fork** button on the top right corner of this page.
 
-Ou seja, você irá configurar um servidor de CI na sua própria cópia do repositório.
+Therefore, you will set up the CI server into your own copy of the repository.
 
-#### Passo 2
+#### Step 2
 
-Clone o repositório para sua máquina local, usando o seguinte comando (onde `<USER>` deve ser substituído pelo seu usuário no GitHub):
+Clone the repository into your local machine. You may use a Git Client for it or the following command line (where `<USER>` should be replaced by your GitHub user).
 
 ```bash
 git clone https://github.com/<USER>/demo-ci.git
 ```
 
-Em seguida, copie o código a seguir para um arquivo com o seguinte nome: `.github/workflows/actions.yaml`. Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `actions.yaml`.
+Next, go to the folder `.github/workflows/` (the **dot** at the begging means it is invisible on Unix/Mac, so use the GitHub web interface), and rename the empty file to `actions.yaml`. Add the content below to the `actions.yaml` file
 
 ```yaml
 name: Github CI
 on:
-  # Configura servidor de CI para executar o pipeline de tarefas abaixo (jobs) quando 
-  # um push ou pull request for realizado tendo como alvo a branch main
+  # Set up a CI Server to execute the jobs pipeline below when 
+  # a push or pull request is made at the main branch
   push:
     branches:
       - main
@@ -86,99 +83,108 @@ on:
 
 jobs:
   pipeline:
-    runs-on: ubuntu-latest # Os comandos serão executados em um sistema operacional Linux
+    runs-on: ubuntu-latest # Commands must be executed on a Linux Ubuntu OS
 
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v2 # Faz o checkout do código recebido
+        uses: actions/checkout@v2 # Checkout the received code 
 
       - name: Set up JDK 1.8
-        uses: actions/setup-java@v1 # Configura o Java 1.8
+        uses: actions/setup-java@v1 # Set up Java 1.8
         with:
           java-version: 1.8
 
       - name: Build
-        run: mvn package -Dmaven.test.skip=true # Compila o código fonte
+        run: mvn package -Dmaven.test.skip=true # Build (compiles) the source code
 
       - name: Unit Test
-        run: mvn test # Executada os testes de unidade
+        run: mvn test # Executes the testing framework 
 ```
 
-Esse arquivo ativa e configura o GitHub Actions para -- toda vez que ocorrer um evento `push` ou `pull_request` tendo como alvo a branch principal do repositório -- realizar três tarefas (jobs):
+This file will activate and set up GitHub Actions to -- every time a `push` or `pull_request` event on this repository main brach -- run three jobs:
 
-- realizar o checkout do código;
-- realizar um build;
-- rodar os testes de unidade.
+- checkout the source code;
+- build the sources;
+- execute the testing framework.
 
-#### Passo 3
+#### Step 3
 
-Realize um `commit` e um `git push`, isto é:
+Make a `commit` and a `git push`. You may use a Git Client for it, or use the following command line:
 
 ```bash
 git add --all
-git commit -m "Configurando GitHub Actions"
+git commit -m "Setting up GitHub Actions"
 git push origin main
 ```
 
-#### Passo 4
+#### Step 4
 
-Quando o `push` chegar no repositório principal, o GitHub Actions iniciará automaticamente o fluxo de tarefas configurado no arquivo `actions.yaml` (isto é, build + testes).
+When your `push` reaches the main repository, GitHub Actions will begin to automatically execute the jobs listed inside the file `actions.yaml` (in our case, the checkout + build + tests). 
 
-Você pode acompanhar o status dessa execução clicando na aba Actions do seu repositório.
+You may watch over the status of the jobs being executed by clicking on the Actions tab inside your repository.
 
-<p align="center">
-    <img width="80%" src="https://user-images.githubusercontent.com/7620947/110059807-b8b3bd00-7d43-11eb-9e57-e6ba1fa3457a.png" />
-</p>
+![CI Jobs Inspection](./images/ci-setup-github-actions.png)
 
-## Tarefa #2: Criando um PR com bug
 
-Para finalizar, vamos introduzir um pequeno bug no programa de exemplo e enviar um PR, para mostrar que ele será "barrado" pelo processo de integração (isto, o nosso teste vai "detectar" o bug e falhar).
+## Task #2: Creating a buggy Pull Request
 
-#### Passo 1
+Now lets see our CI server performing in real live action. We will introduce a simple bug in our code example and send a Pull Request. The CI server will alert to the failed tests in our PR and will not automatically integrate it to the main branch.
 
-Introduza um pequeno bug na função `soma` do arquivo [src/main/java/br/ufmg/dcc/Calculadora.java](https://github.com/rodrigo-brito/roteiro-github-actions/blob/main/src/main/java/br/ufmg/dcc/Calculadora.java). Por exemplo, basta alterar a linha 6, alterando o retorno da função para `x + y + 1`, como apresentado abaixo.
+#### Step 1
+
+Click on the "Main" dropdown button on top. Type the name of branch on the text field. I called my branch `buggy` (adapt accordingly if you change the name).
+
+![CI-Create-Branch](./images/ci-create-branch.png)
+
+You may also create a branch by using the command-line below:
+```bash
+git checkout -b buggy
+```
+
+#### Step 2
+
+Change the function `addition` in the file [SimpleCalculator.java](./src/main/java/br/ufmg/dcc/SimpleCalculator.java) to work incorrectly (i.e., we are introducing a defect on it). For example, we can change line 6, and modify the return to `x + y + 1`, as detailed below.
 
 ```diff
---- a/src/main/java/br/ufmg/dcc/Calculadora.java
-+++ b/src/main/java/br/ufmg/dcc/Calculadora.java
+--- a/src/main/java/br/ufmg/dcc/SimpleCalculator.java
++++ b/src/main/java/br/ufmg/dcc/SimpleCalculator.java
 @@ -3,7 +3,7 @@ package br.ufmg.dcc;
- public class Calculadora {
+ public class SimpleCalculator {
 
-   public int soma(int x, int y) {
+   public int addition(int x, int y) {
 -    return x + y;
 +    return x + y + 1;
    }
 
-   public int subtrai(int x, int y) {
+   public int subtraction(int x, int y) {
 ```
 
-#### Passo 2
+#### Step 3
 
-Após modificar o código, você deve criar um novo branch, realizar um `commit` e `push`:
+If you modified the source file directly in 'buggy' branch by using the GitHub web interface, then you may skip this step.  
+Otherwise, we need to commit-push the changed code to the 'buggy' branch. Use a Git Client or the command line:
 
 ```bash
-git checkout -b bug
-git add --all
-git commit -m "Incluindo alterações na função soma"
-git push origin bug
+git commit -m "Changing function addition"
+git push origin buggy
 ```
 
-#### Passo 3
+#### Step 4
 
-Em seguida, crie um Pull Request (PR) com sua modificação. Para isso, basta acessar a seguinte URL em seu navegador: `https://github.com/<USER>/demo-ci/compare/main...bug`, onde `<USER>` deve ser substituido pelo seu usuário no GitHub. Nessa janela, você pode conferir as modificações feitas e incluir uma pequena descrição no PR.
+Now, create a Pull Request (PR) with your changes. You may click on the Pull Request tab on your GitHub repository and manually navigate the options to create a PR from your buggy branch to your main branch. Or just type the following URL in your browser (where `<USER>` should be replaced by your GitHub user).
+```bash
+https://github.com/<USER>/demo-ci/compare/main...buggy
+```  
+You will see the comparison between the differences of both branches, and write a description for your PR.
 
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/111704705-5b793a80-881e-11eb-8422-22d51bde6b19.png" />
-</p>
+![CI Creating a PR](./images/ci-creating-pull-request.png)
 
-Após finalizar a criação do Pull Request, será iniciada nossa pipeline, ou seja, o próprio GitHub vai fazer o build do sistema e rodar seus testes (como na tarefa #1). Porém, dessa vez os testes não vão passar, como mostrado abaixo:
+After you create the Pull Request, the job pipeline we defined in GitHub Actions will be triggered. **Do not merge**, wait at least 1 minute and you will see the results. GitHub itself will build the system and run the tests (just like it did in Task #1). However, this time the tests will fail, as shown in the figure below.
 
-<p align="center">
-    <img width="70%" src="https://user-images.githubusercontent.com/7620947/111704932-a85d1100-881e-11eb-8d3b-31f34bafa986.png" />
-</p>
+![CI Checks Failed](./images/ci-checks-failed.png)
 
-**RESUMINDO**: O Servidor de CI conseguiu alertar, de forma automática, tanto o autor do PR como o integrador de que existe um problema no código submetido, o que impede que ele seja integrado no branch principal do repositório.
+**SUMMARIZING**: The CI Server managed to automatically warn both the PR author and the integrator that there exists a problem in the submitted code.
 
-## Créditos
+## Credits
 
-Este roteiro foi elaborado por **Rodrigo Brito**, aluno de mestrado do DCC/UFMG, como parte das suas atividades na disciplina Estágio em Docência, cursada em 2020/2, sob orientação do **Prof. Marco Tulio Valente**.
+This guide was conceptualized and originally written by **Rodrigo Brito**, an MSc student in DCC/UFMG in Feb/2020, under the advisement of **Prof. Marco Túlio Valente**. This guide was translated and adapted to English by **Prof. Henrique Rocha**, at Loyola University Maryland, in Nov/2021. 
